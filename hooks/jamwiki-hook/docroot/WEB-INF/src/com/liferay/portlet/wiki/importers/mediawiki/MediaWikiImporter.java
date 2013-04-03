@@ -41,7 +41,8 @@ import com.liferay.portal.kernel.zip.ZipReaderFactoryUtil;
 import com.liferay.portal.model.User;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.UserLocalServiceUtil;
-import com.liferay.portal.util.PropsValues;
+import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portlet.asset.NoSuchTagException;
 import com.liferay.portlet.asset.model.AssetTag;
 import com.liferay.portlet.asset.service.AssetTagLocalServiceUtil;
@@ -294,7 +295,7 @@ public class MediaWikiImporter implements WikiImporter {
 
 	protected String normalizeTitle(String title) {
 		title = title.replaceAll(
-			PropsValues.WIKI_PAGE_TITLES_REMOVE_REGEXP, StringPool.BLANK);
+			PropsUtil.get(PropsKeys.WIKI_PAGE_TITLES_REMOVE_REGEXP), StringPool.BLANK);
 
 		return StringUtil.shorten(title, 75);
 	}
