@@ -1,0 +1,72 @@
+.ask-irc-portlet {
+	max-width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+.ask-irc-portlet .irc-results {
+	max-height: 400px;
+	width: auto;
+	font-size: 1.2em;
+	font-weight: 500;
+	overflow-y: scroll;
+	padding: 1em;
+	background-color: rgba(255, 255, 200, 0.4);
+	color: yellow;
+}
+.ask-irc-portlet .irc-errors {
+	max-height: 20px;
+	width: auto;
+	color: red;
+	padding: 1em;
+}
+.ask-irc-portlet .aip-input-text-height {
+	height: 2em;
+	width: 100%;
+	margin-bottom: 1em !important;
+	margin-top: 1em !important;
+}
+.ask-irc-portlet .irc-input {
+	width: 100% !important;
+	padding: 0.5em !important;
+	box-sizing: border-box;
+	height: 100% !important;
+	max-height: 2em !important;
+}
+.ask-irc-portlet .irc-chat-row {
+	background-color: rgba(0, 0, 0, 0.4);
+	padding: 0.25em 1em;
+	background-repeat: no-repeat;
+	background-image: url("/html/themes/_unstyled/images/common/guest_icon.png");
+	background-size: 1.5em auto;
+	background-position: 0.2em 0%;
+	padding-left: 2.2em;
+	padding-top: 0;
+	padding-bottom: 1em;
+	line-height: 1.3em;
+	
+}
+.ask-irc-portlet .irc-modal {
+	color: black;
+}
+.ask-irc-portlet .edit-settings {
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+}
+.chat-portlet .group-chat-settings-chat .panel-window {
+	max-width: 600px;
+	max-height: 600px;
+	min-height: 300px;
+}
+.chat-portlet .group-chat-settings, .chat-portlet .group-chat-settings .edit-settings {
+	min-height: 300px;
+}
+.chat-portlet .chat-user-id, .ask-irc-portlet .chat-user-id {
+	display: none;
+}
+.ask-irc-portlet .hide-before-show {
+	display: none;
+}
+.chat-portlet .panel-output .text {
+	color: black;
+}

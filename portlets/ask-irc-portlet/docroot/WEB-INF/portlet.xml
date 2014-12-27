@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+
+<portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" version="2.0">
+	<portlet>
+		<portlet-name>ask-irc</portlet-name>
+		<display-name>Ask IRC</display-name>
+		<portlet-class>com.bvakili.portlet.askirc.action.Render</portlet-class>
+        <init-param>
+            <name>view-jsp</name>
+            <value>/html/portlet/ask-irc/view.jsp</value>
+        </init-param>
+        <init-param>
+            <name>config-jsp</name>
+            <value>/html/portlet/ask-irc/configuration.jsp</value>
+        </init-param>
+        <init-param>
+            <name>edit-jsp</name>
+            <value>/html/portlet/ask-irc/edit.jsp</value>
+        </init-param>
+		<expiration-cache>0</expiration-cache>
+		<supports>
+			<mime-type>text/html</mime-type>
+            <portlet-mode>edit</portlet-mode>
+            <portlet-mode>view</portlet-mode>
+            <portlet-mode>config</portlet-mode>
+		</supports>
+        <resource-bundle>content.Language</resource-bundle>
+		<portlet-info>
+			<title>Ask IRC</title>
+			<short-title>Ask IRC</short-title>
+			<keywords>Ask IRC</keywords>
+		</portlet-info>
+		<security-role-ref>
+			<role-name>administrator</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>guest</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>power-user</role-name>
+		</security-role-ref>
+		<security-role-ref>
+			<role-name>user</role-name>
+		</security-role-ref>
+	</portlet>
+</portlet-app>
