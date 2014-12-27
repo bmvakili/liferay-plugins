@@ -475,7 +475,7 @@ public class IRCBot extends ListenerAdapter implements Listener {
 
 		hostName = newServer;
 		try {
-			_log.info("Connecting to " + newServer + " " + portNumber);
+			_log.debug("Connecting to " + newServer + " " + portNumber);
 			bot.connect(newServer, portNumber);
 			bot.joinChannel(channelName);
 		} catch (Exception ex) {

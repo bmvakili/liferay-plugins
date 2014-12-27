@@ -276,7 +276,7 @@ public class Render extends MVCPortlet {
 		if (!BotRegistryUtil.isInUpdate() && !ircBot.isDisabled()) {
 			String message = resourceRequest.getParameter("MSG");
 			if (message != null && !message.trim().isEmpty()) {
-				_log.info(message);
+				_log.debug(message);
 			}
 			
 			if (message != null && message.length() > 0) {
@@ -452,7 +452,7 @@ public class Render extends MVCPortlet {
 
 				String name = entry.getKey();
 				String[] values = entry.getValue();
-				_log.info(name + "\t" + values);
+				_log.debug(name + "\t" + values);
 				portletPreferences.setValues(name, values);
 			}
 		}
