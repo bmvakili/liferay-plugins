@@ -48,6 +48,7 @@ askIRC.portletNamespace = '<portlet:namespace />';
 askIRC.timeout;
 askIRC.userFullName = '<%= user.getFullName() %>';
 askIRC.userId = '<%= user.getUserId() %>';
+askIRC.debug = false;
 askIRC.isIntegratedWithLiferayChat = false, askIRC.groupChat = null, askIRC.groupChatMsg = '';
 askIRC.isIntegrateLiferayChat = <%= ircBot.isIntegrateLiferayChat() %>;
 askIRC.showUsersList = <%= showUsersList %>;
@@ -61,7 +62,9 @@ askIRC.INIT_MESSAGE_CONSTANT = 3;
 askIRC.refreshCounter = 0;
 askIRC.pollingInterval= <%= (ircBot != null? String.valueOf(ircBot.getPollingInterval()) : "2000") %>;
 askIRC.appendToResults = function(x) {
-	console.log('appendToResults ' + x);
+	if (askIRC.debug) {
+		console.log('appendToResults ' + x);
+	}
 	if (askIRC.isIntegrateLiferayChat) {
 		var now = Liferay.Chat.Util.getCurrentTimestamp();
 		var entry = {
@@ -74,7 +77,9 @@ askIRC.appendToResults = function(x) {
 		z1 = document.getElementById("<portlet:namespace />irc-results");
 		z = AUI().one("#<portlet:namespace />irc-results");
 		z.append('<div class="irc-chat-row">' + x + '</div>');
-		console.log("Appended " + x);
+		if (askIRC.debug) {
+			console.log("Appended " + x);
+		}
 		z1.scrollTop = z1.scrollHeight;
 	}
 
@@ -139,7 +144,9 @@ askIRC.request = function(x) {
 		clearTimeout(askIRC.timeout);
 		return;
 	}
-	console.log('test');
+	if (askIRC.debug) {
+		console.log('test');
+	}
 	A.io.request(
 		'${update}',
 		{
@@ -177,7 +184,9 @@ askIRC.request = function(x) {
 					if (response) {
 							var x = response.data;
 							var y = response.users;
-							console.log("data: " + x);
+							if (askIRC.debug) {
+								console.log("data: " + x);
+							}
 							if (askIRC.showUsersList) {
 								
 								if (askIRC.refreshCounter == 0) {
@@ -213,7 +222,9 @@ askIRC.request = function(x) {
 							}
 							
 							for (i = 0; i < x.length; i++) {
-								console.log('isIntegrateLiferayChat ' + askIRC.isIntegrateLiferayChat + " xyz: " + (x[i].indexOf("<span class='chat-user-id'>" + askIRC.userId + "</span>") != 0));
+								if (askIRC.debug) {
+									console.log('isIntegrateLiferayChat ' + askIRC.isIntegrateLiferayChat + " xyz: " + (x[i].indexOf("<span class='chat-user-id'>" + askIRC.userId + "</span>") != 0));
+								}
 								if (askIRC.isIntegrateLiferayChat && x[i].indexOf("<span class='chat-user-id'>" + askIRC.userId + "</span>") != 0) {
 									
 								} else {
@@ -227,6 +238,9 @@ askIRC.request = function(x) {
 	);
 };
 askIRC.fetchIRCUpdate = function() {
+	if (askIRC.disabled) {
+		return;
+	}
 	askIRC.request(null);
 	clearTimeout(askIRC.timeout);
 	if (!askIRC.connLost) {
@@ -272,13 +286,19 @@ if (!askIRC.disabled) {
 			if (c2) {
 				c2.setHTML(content);
 			}
-			console.log("found content and loaded it "+ content);
+			if (askIRC.debug) {
+				console.log("found content and loaded it "+ content);
+			}
 		};
 		AUI().one('window').on('beforeunload', listener);
 		AUI().one('window').on('askircready',loadListener);
-		console.log('setup all listeners');
-		AUI().fire('askircready');
-		console.log('called fire');
+		if (askIRC.debug) {
+			console.log('setup all listeners');
+		}
+
+		if (askIRC.debug) {
+			console.log('called fire');
+		}
 	}
 }
 

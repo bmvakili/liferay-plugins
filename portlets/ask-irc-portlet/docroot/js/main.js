@@ -13,12 +13,27 @@ AUI().use(
 		/**
 		 * Liferay Chat Integration Code
 		 */
+		
+		if (typeof(askIRC) == "undefined") {
+			return;
+		}
+		
 		if (askIRC.disabled) {
 			return;
 		}
-			
+		
+
 		var lrct = AUI().one('.chat-tabs-container ul.chat-tabs');
 		var aip = AUI().one('#_askirc_WAR_askircportlet_irc-results');
+
+		// Return if Liferay Chat is not present
+		// since integration option is turned on.
+		if (askIRC.isIntegrateLiferayChat && (lrct == null || aip == null)) {
+			askIRC.disabled = true;
+			return;
+		}
+		// Return since Liferay Chat is not present
+		// or integration option is turned off
 		if (lrct === null || aip === null || !askIRC.isIntegrateLiferayChat) {
 			var x= A.one('.hide-before-show');
 			if (x) {
@@ -29,13 +44,13 @@ AUI().use(
 			AUI().one('window').fire('askircready');
 			return;
 		}
+		
 		aip = aip.get('parentNode');
 
 		askIRC.setupIntegration = function() {
-			
-			
-			console.log('Liferay.Chat' + Liferay.Chat);
-			
+			if (askIRC.debug) {
+				console.log('Liferay.Chat' + Liferay.Chat);
+			}
 			
 			if (Liferay.Chat === undefined) {
 				setTimeout(askIRC.setupIntegration, 1500);
@@ -43,9 +58,9 @@ AUI().use(
 			}
 			
 			
-			
-			console.log("liferay chat " + Liferay.Chat);
-
+			if (askIRC.debug) {
+				console.log("liferay chat " + Liferay.Chat);
+			}
 
 			if (askIRC.setupCounter == 0) {
 
@@ -176,10 +191,14 @@ AUI().use(
 			}
 
 		}
-		console.log('askIRC.isIntegrateLiferayChat: ' + askIRC.isIntegrateLiferayChat);
+		if (askIRC.debug) {
+			console.log('askIRC.isIntegrateLiferayChat: ' + askIRC.isIntegrateLiferayChat);
+		}
 		if (lrct !== undefined && askIRC.isIntegrateLiferayChat) {
 
-			console.log('calling askIRC.setupIntegration');
+			if (askIRC.debug) {
+				console.log('calling askIRC.setupIntegration');
+			}
 			Liferay.on('allPortletsReady', askIRC.setupIntegration);
 			//Liferay.on('domready', askIRC.setupIntegration);
 
